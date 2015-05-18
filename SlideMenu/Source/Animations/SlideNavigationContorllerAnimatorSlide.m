@@ -58,7 +58,9 @@
         ? [SlideNavigationController sharedInstance].leftMenu
         : [SlideNavigationController sharedInstance].rightMenu;
 	
-	UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+//	UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    
 	CGRect rect = menuViewController.view.frame;
 	
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
@@ -69,7 +71,7 @@
     {
         if (UIDeviceOrientationIsLandscape(orientation))
         {
-            if (orientation == UIDeviceOrientationLandscapeRight)
+            if (orientation == UIDeviceOrientationLandscapeLeft)
             {
                 rect.origin.y = (menu == MenuLeft) ? self.slideMovement*-1 : self.slideMovement;
             }
@@ -100,7 +102,8 @@
         ? [SlideNavigationController sharedInstance].leftMenu
         : [SlideNavigationController sharedInstance].rightMenu;
     
-    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+//    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     
     NSInteger location = (menu == MenuLeft)
         ? (self.slideMovement * -1) + (self.slideMovement * progress)
@@ -122,7 +125,7 @@
     {
         if (UIDeviceOrientationIsLandscape(orientation))
         {
-            rect.origin.y = (orientation == UIDeviceOrientationLandscapeRight) ? location : location*-1;
+            rect.origin.y = (orientation == UIDeviceOrientationLandscapeLeft) ? location : location*-1;
         }
         else
         {
@@ -147,8 +150,9 @@
     ? [SlideNavigationController sharedInstance].leftMenu
     : [SlideNavigationController sharedInstance].rightMenu;
     
-	UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
-	
+//	UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+	UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    
     CGRect rect = menuViewController.view.frame;
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
